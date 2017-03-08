@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-#define MAX_NODE 5001
+#define MAX_NODE 5010
 typedef struct listNode
 {
 	int data;
@@ -48,6 +48,12 @@ int main()
 	{
 		node = node->next;
 	}
+
+	if (listSize == 1) { // 리스트 사이즈 1개인 경우 예외처리 : 이처리 안하면 97%에서 런타임에러
+		cout << "<" << node->data << ">" << endl;
+		return 0;
+	}
+
 	cout <<"<"<<node->data <<", ";
 	list = removeListNode(list, node);
 
@@ -57,13 +63,15 @@ int main()
 		{
 			node = node->next;
 		}
-
-		cout << node->data<<", ";
+		cout << node->data << ", ";
 		list = removeListNode(list, node);
 	}
 
-	cout << node->next->data <<">" << endl;
-	list = removeListNode(list, node);
+
+
+	cout << list->data << ">" << endl;
+	//cout << node->next->data <<">" << endl;
+	//list = removeListNode(list, node);
 
 	return 0;
 }
@@ -83,6 +91,7 @@ void initListNode(ListNode* node)
 	node->prev = node;
 	node->next = node;
 }
+
 ListNode* getListNode(void)
 {
 	int i;
