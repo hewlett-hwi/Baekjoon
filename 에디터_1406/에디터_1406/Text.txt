@@ -1,4 +1,13 @@
-abcd
-2
+dmih
+11
+B
+B
+P x
+L
+B
+B
+B
 P y
-P a
+D
+D
+P z 

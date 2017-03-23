@@ -88,7 +88,7 @@ ListNode* removeListNode(ListNode* list, ListNode* node)
 int main()
 {
 	std::ios::sync_with_stdio(false);
-	freopen("Text.txt", "r", stdin);
+	//freopen("Text.txt", "r", stdin);
 
 	ListNode* list = NULL;
 	ListNode* node;
