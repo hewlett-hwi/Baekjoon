@@ -1,5 +1,4 @@
-#include <iostream>
-#include <cstdio>
+#include <stdio.h>
 using namespace std;
 #define MAX 400001
 
@@ -76,15 +75,12 @@ int query_rmq_max(int left, int right, int node_left, int node_right, int node)
 
 int main(int argc, char** argv)
 {
-	std::ios::sync_with_stdio(false);
-	//freopen("Text.txt", "r", stdin);
+	freopen("Text.txt", "r", stdin);
 
-	cin >> N >> M;
-	//scanf("%d %d", &N, &M);
+	scanf("%d %d", &N, &M);
 
 	for (int i = 0; i < N; i++)
-		cin >> d[i];
-		//scanf("%d", &d[i]);
+		scanf("%d", &d[i]);
 		
 
 	init_rmq_min(0, N - 1, 1);
@@ -93,8 +89,7 @@ int main(int argc, char** argv)
 	for (int i = 0; i < M; i++)
 	{
 		int queryLeft, queryRight;
-		cin >> queryLeft >> queryRight;
-		//scanf("%d %d", &queryLeft, &queryRight);
+		scanf("%d %d", &queryLeft, &queryRight);
 		queryLeft--; queryRight--;
 
 		//cout << query_rmq_min(queryLeft, queryRight, 0, N - 1, 1) << " " << query_rmq_max(queryLeft, queryRight, 0, N - 1, 1) << endl;
