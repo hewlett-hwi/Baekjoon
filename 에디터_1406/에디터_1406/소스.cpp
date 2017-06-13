@@ -1,4 +1,4 @@
-#include <iostream>
+#include <stdio.h>
 using namespace std;
 #define MAX_NODE 1000000
 
@@ -87,8 +87,7 @@ ListNode* removeListNode(ListNode* list, ListNode* node)
 
 int main()
 {
-	std::ios::sync_with_stdio(false);
-	//freopen("Text.txt", "r", stdin);
+	freopen("Text.txt", "r", stdin);
 
 	ListNode* list = NULL;
 	ListNode* node;
@@ -112,8 +111,10 @@ int main()
 	scanf("%d", &N);
 
 	for (int i = 0; i < N; i++) {
-		scanf(" %c", &c);
-		//cout << c;
+		//scanf(" %c", &c); 이거 쓰면 틀림
+		getchar();
+		c = getchar();
+
 		switch (c)
 		{
 		case 'L':
@@ -140,8 +141,6 @@ int main()
 		case 'P':
 			char addChar;
 			scanf(" %c", &addChar);
-			//cin >> addChar;
-			//cout << addChar;
 			appendListNode(node->next, addChar - '0'); // 처음(list)을 보존시켜줌
 			node = node->next;			
 			break;
@@ -158,5 +157,4 @@ int main()
 		printf("%c", tempnode->next->data + '0');
 		tempnode = tempnode->next;
 	}
-	cout << endl;
 }
