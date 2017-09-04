@@ -1,7 +1,6 @@
-#include <iostream>
-using namespace std;
+#include <stdio.h>
 
-#define MAX_SIZE 200000
+#define MAX_SIZE 400000
 int heap[MAX_SIZE];
 int heapSize = 0;
 void heapInit(void)
@@ -45,7 +44,7 @@ int heapPop(int *value)
 		}
 		else
 		{
-			child = heap[current * 2 + 1] < heap[current * 2 + 2] ? current * 2 + 1 : current * 2 + 2;
+			child = heap[current * 2 + 1] > heap[current * 2 + 2] ? current * 2 + 1 : current * 2 + 2;
 		}
 		if (heap[current] > heap[child])
 		{
@@ -60,28 +59,27 @@ int heapPop(int *value)
 }
 int main(int argc, char* argv[])
 {
-	std::ios::sync_with_stdio(false);
 	freopen("Text.txt", "r", stdin);
 
 	int N;
-	cin >> N;
+	scanf("%d", &N);
 
 	heapInit();
 
 	for (int i = 0; i < N; i++)
 	{
 		int input, output;
-		cin >> input;
+		scanf("%d", &input);
 
 		if (input != 0)
 			heapPush(input);
 		else
 		{
 			if (heapSize == 0)
-				cout << 0 << endl;
+				printf("0\n");
 			else {
 				heapPop(&output);
-				cout << output << endl;
+				printf("%d\n", output);
 			}
 		}
 
