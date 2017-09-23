@@ -3,8 +3,8 @@
 using namespace std;
 
 char map[12][6];
-int dy[4] = {0, -1, 0, 1};
-int dx[4] = {-1, 0, 1, 0};
+int dy[4] = { 0, -1, 0, 1 };
+int dx[4] = { -1, 0, 1, 0 };
 int visited[12][6]; // 0:초기 1:대기 2:방문완료 4:터질것
 
 void printMap() {
@@ -13,7 +13,7 @@ void printMap() {
 			cout << map[y][x];
 		cout << endl;
 	}
-
+	cout << endl;
 }
 
 void changeVisitedStatus(int from, int to) {
@@ -42,7 +42,7 @@ int fire() {
 				map[y][x] = '.';
 				ret++;
 			}
-				
+
 		}
 	}
 
@@ -50,40 +50,29 @@ int fire() {
 }
 
 void land() {
-	//
-}
-
-int doDfs() {
-	int answer = 0;
-	bool isFire = false;
-	while (1)
+	for (int j = 0; j < 6; j++)
 	{
-		for (int y = 0; y < 12; y++) {
-			for (int x = 0; x < 6; x++) {
-				if (visited[y][x] == false && map[y][x] != '.')
+		for (int i = 11; i >= 0; i--)
+		{
+			if (map[i][j] != '.')
+			{
+				int k = i;
+				while (k <= 11)
 				{
-					int ret = dfs(y, x, map[y][x]);
-					if (ret >= 4)
-						changeVisitedStatus(1, 4), isFire = true;
+					if (map[k + 1][j] == '.')
+					{
+						char tmp = map[k][j];
+						map[k][j] = '.';
+						map[k + 1][j] = tmp;
+						k = k + 1;
+					}
 					else
-						changeVisitedStatus(1, 2);
+						break;
 				}
+
 			}
 		}
-
-		fire();
-		land();
-
-		if (isFire == true)
-			answer++, isFire = false;
-		else
-			break;
-
-		// visited 초기화
-		changeVisitedStatusZero();
-
-	} // while end
-	return answer;
+	}
 }
 
 int dfs(int y, int x, char target) {
@@ -102,6 +91,44 @@ int dfs(int y, int x, char target) {
 
 	return ret;
 }
+
+
+int doDfs() {
+	int answer = 0;
+	bool isFire = false;
+	while (1)
+	{
+		printMap();
+
+		for (int y = 0; y < 12; y++) {
+			for (int x = 0; x < 6; x++) {
+				if (visited[y][x] == false && map[y][x] != '.')
+				{
+					int ret = dfs(y, x, map[y][x]);
+					if (ret >= 4)
+						changeVisitedStatus(1, 4), isFire = true;
+					else
+						changeVisitedStatus(1, 2);
+				}
+			}
+		}
+
+		fire();
+		land();
+
+
+		if (isFire == true)
+			answer++, isFire = false;
+		else
+			break;
+
+		// visited 초기화
+		changeVisitedStatusZero();
+
+	} // while end
+	return answer;
+}
+
 
 int main()
 {
