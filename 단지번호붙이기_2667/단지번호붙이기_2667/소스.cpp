@@ -78,7 +78,39 @@ void showMap() {
 
 }
 
-void quickSort(int first, int last){	int pivot;	int i;	int j;	int temp;	if (first < last)	{		pivot = first;		i = first;		j = last;
-		while (i < j)		{			while (answerArray[i] <= answerArray[pivot] && i < last)			{				i++;			}			while (answerArray[j] > answerArray[pivot])			{				j--;			}			if (i < j)			{				temp = answerArray[i];				answerArray[i] = answerArray[j];				answerArray[j] = temp;			}		}
-		temp = answerArray[pivot];		answerArray[pivot] = answerArray[j];		answerArray[j] = temp;
-		quickSort(first, j - 1);		quickSort(j + 1, last);	}}
+void quickSort(int first, int last)
+{
+	int pivot;
+	int i;
+	int j;
+	int temp;
+
+	if (first < last)
+	{
+		pivot = first;
+		i = first;
+		j = last;
+		while (i < j)
+		{
+			while (answerArray[i] <= answerArray[pivot] && i < last)
+			{
+				i++;
+			}
+			while (answerArray[j] > answerArray[pivot])
+			{
+				j--;
+			}
+			if (i < j)
+			{
+				temp = answerArray[i];
+				answerArray[i] = answerArray[j];
+				answerArray[j] = temp;
+			}
+		}
+		temp = answerArray[pivot];
+		answerArray[pivot] = answerArray[j];
+		answerArray[j] = temp;
+		quickSort(first, j - 1);
+		quickSort(j + 1, last);
+	}
+}
